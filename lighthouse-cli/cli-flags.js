@@ -352,10 +352,10 @@ function getFlags(manualArgv, options = {}) {
 /**
  * Support comma-separated values for some array flags by splitting on any ',' found.
  * @param {Array<string>=} strings
- * @return {Array<string>|undefined}
+ * @return {Array<string>|null}
  */
 function splitCommaSeparatedValues(strings) {
-  if (!strings) return strings;
+  if (!strings) return null;
 
   return strings.flatMap(value => value.split(','));
 }

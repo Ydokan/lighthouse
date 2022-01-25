@@ -160,7 +160,10 @@
     "locale": "en-US",
     "blockedUrlPatterns": null,
     "additionalTraceCategories": null,
-    "precomputedLanternData": null
+    "precomputedLanternData": null,
+    "onlyAudits": null,
+    "onlyCategories": null,
+    "skipAudits": null
   },
   "URL": {
     "requestedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
