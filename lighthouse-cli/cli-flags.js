@@ -343,7 +343,7 @@ function getFlags(manualArgv, options = {}) {
 
   // Augmenting yargs type with auto-camelCasing breaks in tsc@4.1.2 and @types/yargs@15.0.11,
   // so for now cast to add yarg's camelCase properties to type.
-  const argv = parser.argv;
+  const argv = /** @type {Awaited<typeof parser.argv>} */ (parser.argv);
   const cliFlags = /** @type {typeof argv & CamelCasify<typeof argv>} */ (argv);
 
   return cliFlags;
