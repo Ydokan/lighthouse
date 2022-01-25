@@ -52,6 +52,7 @@ describe('CLI flags', function() {
         cpuSlowdownMultiplier: 6,
       },
     });
+    expect(flags).toMatchSnapshot();
   });
 
   it('array values support csv when appropriate', () => {
@@ -63,6 +64,7 @@ describe('CLI flags', function() {
     ].join(' '));
     expect(flags.onlyCategories).toEqual(['performance', 'seo']);
     expect(flags.skipAudits).toEqual(['unused-javascript', 'redirects', 'bootup-time']);
+    expect(flags).toMatchSnapshot();
   });
 
   it('array values do not support csv when appropriate', () => {
@@ -77,6 +79,7 @@ describe('CLI flags', function() {
       '--enabled-features=NetworkService,VirtualTime',
     ]);
     expect(flags.blockedUrlPatterns).toEqual(['.*x,y\\.png']);
+    expect(flags).toMatchSnapshot();
   });
 
   describe('extraHeaders', () => {
@@ -87,6 +90,7 @@ describe('CLI flags', function() {
       ].join(' '));
 
       expect(flags).toHaveProperty('extraHeaders', {foo: 'bar'});
+      expect(flags).toMatchSnapshot();
     });
 
     it('should read extra headers from file', () => {
@@ -98,6 +102,7 @@ describe('CLI flags', function() {
       ].join(' '));
 
       expect(flags).toHaveProperty('extraHeaders', headers);
+      expect(flags).toMatchSnapshot();
     });
   });
 
@@ -108,6 +113,7 @@ describe('CLI flags', function() {
       it('parses a number value', () => {
         const flags = getFlags(`${url} --screenEmulation.width=500`, {noExitOnFailure: true});
         expect(flags.screenEmulation).toEqual({width: 500});
+        expect(flags).toMatchSnapshot();
       });
 
       it('throws on a non-number', () => {
@@ -143,6 +149,7 @@ describe('CLI flags', function() {
         const flags = getFlags(`${url} --screenEmulation.deviceScaleFactor=1.325`,
             {noExitOnFailure: true});
         expect(flags.screenEmulation).toEqual({deviceScaleFactor: 1.325});
+        expect(flags).toMatchSnapshot();
       });
 
       it('throws on a non-number', () => {
@@ -162,6 +169,7 @@ describe('CLI flags', function() {
       it('parses the flag with no value as true', () => {
         const flags = getFlags(`${url} --screenEmulation.mobile`, {noExitOnFailure: true});
         expect(flags.screenEmulation).toEqual({mobile: true});
+        expect(flags).toMatchSnapshot();
       });
 
       it('parses the --no-mobile flag as false', () => {
@@ -187,6 +195,7 @@ describe('CLI flags', function() {
       it('parses the flag with no value as true', () => {
         const flags = getFlags(`${url} --screenEmulation.disabled`, {noExitOnFailure: true});
         expect(flags.screenEmulation).toEqual({disabled: true});
+        expect(flags).toMatchSnapshot();
       });
 
       it('parses the --no-disabled flag as false', () => {
