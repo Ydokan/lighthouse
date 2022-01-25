@@ -26,7 +26,9 @@ function snapshot(flags) {
   for (const [k, v] of Object.entries(flags)) {
     if (typeof v === 'string') {
       // @ts-expect-error
-      flags[k] = v.replace(process.cwd(), '__REPLACED__');
+      flags[k] = v
+        .replace(process.cwd(), '__REPLACED__')
+        .replace('\\', '/');
     }
   }
 
