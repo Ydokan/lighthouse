@@ -259,10 +259,19 @@ class Runner {
         output: undefined,
         channel: undefined,
         budgets: undefined,
+        skipAudits: undefined,
+        onlyAudits: undefined,
+        onlyCategories: undefined,
+        extraHeaders: undefined,
       };
       const normalizedGatherSettings = Object.assign({}, artifacts.settings, overrides);
       const normalizedAuditSettings = Object.assign({}, settings, overrides);
 
+      for (const k of Object.keys(normalizedGatherSettings)) {
+        if (!isDeepEqual(normalizedGatherSettings[k], normalizedAuditSettings[k])) {
+          throw new Error('Cannot change settings between gathering and auditing: ' + k);
+        }
+      }
       if (!isDeepEqual(normalizedGatherSettings, normalizedAuditSettings)) {
         throw new Error('Cannot change settings between gathering and auditing');
       }

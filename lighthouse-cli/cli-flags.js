@@ -365,7 +365,9 @@ function splitCommaSeparatedValues(strings) {
  * @return {boolean|string|undefined}
  */
 function coerceOptionalStringBoolean(value) {
-  if (typeof value !== 'undefined' && typeof value !== 'string' && typeof value !== 'boolean') {
+  if (value === undefined) return;
+
+  if (typeof value !== 'string' && typeof value !== 'boolean') {
     throw new Error('Invalid value: Argument must be a string or a boolean');
   }
   return value;
@@ -399,9 +401,11 @@ function coerceOutput(values) {
  * allowlist specific locales. Why? So we can support the user who requests 'es-MX' (unsupported)
  * and we'll fall back to 'es' (supported).
  * @param {unknown} value
- * @return {LH.Locale}
+ * @return {LH.Locale|undefined}
  */
 function coerceLocale(value) {
+  if (value === undefined) return;
+
   if (typeof value !== 'string') throw new Error(`Invalid value: Argument 'locale' must be a string`);
   return /** @type {LH.Locale} */ (value);
 }
@@ -431,9 +435,11 @@ function coerceExtraHeaders(value) {
 /**
  * Take yarg's unchecked object value and ensure it's proper throttling settings.
  * @param {unknown} value
- * @return {LH.ThrottlingSettings}
+ * @return {LH.ThrottlingSettings|undefined}
  */
 function coerceThrottling(value) {
+  if (value === undefined) return;
+
   if (!isObjectOfUnknownValues(value)) {
     throw new Error(`Invalid value: Argument 'throttling' must be an object, specified per-property ('throttling.rttMs', 'throttling.throughputKbps', etc)`);
   }
@@ -465,9 +471,11 @@ function coerceThrottling(value) {
 /**
  * Take yarg's unchecked object value and ensure it is a proper LH.screenEmulationSettings.
  * @param {unknown} value
- * @return {Partial<LH.ScreenEmulationSettings>}
+ * @return {Partial<LH.ScreenEmulationSettings>|undefined}
  */
 function coerceScreenEmulation(value) {
+  if (value === undefined) return;
+
   if (!isObjectOfUnknownValues(value)) {
     throw new Error(`Invalid value: Argument 'screenEmulation' must be an object, specified per-property ('screenEmulation.width', 'screenEmulation.deviceScaleFactor', etc)`);
   }
