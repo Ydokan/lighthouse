@@ -413,9 +413,6 @@ Object {
   "extraHeaders": Object {
     "X-Men": "wolverine",
   },
-  "extraheaders": Object {
-    "xMen": "wolverine",
-  },
   "fraggle-rock": false,
   "fraggleRock": false,
   "hostname": "127.0.0.1",

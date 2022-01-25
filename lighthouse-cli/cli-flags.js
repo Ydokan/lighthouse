@@ -346,16 +346,25 @@ function getFlags(manualArgv, options = {}) {
   const argv = /** @type {Awaited<typeof parser.argv>} */ (parser.argv);
   const cliFlags = /** @type {typeof argv & CamelCasify<typeof argv>} */ (argv);
 
+  // yargs will return `undefined` for options that have a `coerce` function but
+  // are not actually present in the user input. Instead of passing properties
+  // explicitly set to undefined, delete them from the flags object.
+  for (const [k, v] of Object.entries(cliFlags)) {
+    // This property is meant to possibly be explicitly undefined.
+    if (k === 'enable-error-reporting' || k === 'enableErrorReporting') continue;
+    if (v === undefined) delete cliFlags[k];
+  }
+
   return cliFlags;
 }
 
 /**
  * Support comma-separated values for some array flags by splitting on any ',' found.
  * @param {Array<string>=} strings
- * @return {Array<string>|null}
+ * @return {Array<string>=}
  */
 function splitCommaSeparatedValues(strings) {
-  if (!strings) return null;
+  if (!strings) return undefined;
 
   return strings.flatMap(value => value.split(','));
 }
@@ -418,7 +427,7 @@ function coerceLocale(value) {
  */
 function coerceExtraHeaders(value) {
   // TODO: this function does not actually verify the object type.
-  if (value === undefined) return null;
+  if (value === undefined) return value;
   if (typeof value === 'object') return /** @type {LH.SharedFlagsSettings['extraHeaders']} */ (value);
   if (typeof value !== 'string') {
     throw new Error(`Invalid value: Argument 'extra-headers' must be a string`);
