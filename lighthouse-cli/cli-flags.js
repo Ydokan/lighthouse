@@ -418,7 +418,7 @@ function coerceLocale(value) {
  */
 function coerceExtraHeaders(value) {
   // TODO: this function does not actually verify the object type.
-  if (value === undefined) return value;
+  if (value === undefined) return null;
   if (typeof value === 'object') return /** @type {LH.SharedFlagsSettings['extraHeaders']} */ (value);
   if (typeof value !== 'string') {
     throw new Error(`Invalid value: Argument 'extra-headers' must be a string`);

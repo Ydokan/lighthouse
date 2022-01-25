@@ -5892,6 +5892,7 @@
     "locale": "en-US",
     "blockedUrlPatterns": null,
     "additionalTraceCategories": null,
+    "extraHeaders": null,
     "precomputedLanternData": null,
     "onlyAudits": null,
     "onlyCategories": null,
