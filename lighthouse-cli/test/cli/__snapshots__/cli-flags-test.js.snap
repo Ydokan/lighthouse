@@ -403,8 +403,8 @@ Object {
   "chrome-ignore-default-flags": false,
   "chromeFlags": "--window-size 800,600",
   "chromeIgnoreDefaultFlags": false,
-  "cli-flags-path": "/Users/cjamcl/src/lighthouse/lighthouse-cli/test/fixtures/cli-flags-path.json",
-  "cliFlagsPath": "/Users/cjamcl/src/lighthouse/lighthouse-cli/test/fixtures/cli-flags-path.json",
+  "cli-flags-path": "__REPLACED__/lighthouse-cli/test/fixtures/cli-flags-path.json",
+  "cliFlagsPath": "__REPLACED__/lighthouse-cli/test/fixtures/cli-flags-path.json",
   "enable-error-reporting": undefined,
   "enableErrorReporting": undefined,
   "extra-headers": Object {
