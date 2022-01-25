@@ -28,7 +28,7 @@ function snapshot(flags) {
       // @ts-expect-error
       flags[k] = v
         .replace(process.cwd(), '__REPLACED__')
-        .replace('\\', '/');
+        .replace(/\\/g, '/');
     }
   }
 
