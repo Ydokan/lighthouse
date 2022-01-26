@@ -259,10 +259,6 @@ class Runner {
         output: undefined,
         channel: undefined,
         budgets: undefined,
-        skipAudits: undefined,
-        onlyAudits: undefined,
-        onlyCategories: undefined,
-        extraHeaders: undefined,
       };
       const normalizedGatherSettings = Object.assign({}, artifacts.settings, overrides);
       const normalizedAuditSettings = Object.assign({}, settings, overrides);
