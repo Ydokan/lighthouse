@@ -84,6 +84,7 @@ describe('CLI flags', function() {
     ].join(' '));
 
     expect(flags.budgets).toMatchObject([{'anything': 'works'}]);
+    snapshot(flags);
   });
 
   it('array values support csv when appropriate', () => {
